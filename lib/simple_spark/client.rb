@@ -42,7 +42,7 @@ module SimpleSpark
 
       path = "#{@base_path}#{path}"
       params = { path: path, headers: headers }
-      params[:body] = body_values.to_json unless body_values.empty?
+      params[:body] = JSON.dump(body_values) unless body_values.empty?
       params[:query] = query_params unless query_params.empty?
 
       if @debug
