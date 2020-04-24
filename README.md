@@ -893,6 +893,19 @@ simple_spark.recipient_lists.delete(your_list_id)
 
 <a href="https://developers.sparkpost.com/api/recipient-lists/#recipient-lists-delete-delete-a-recipient-list" target="_blank">see SparkPost API Documentation</a>
 
+
+### Recipient Validation
+
+#### Validate
+
+Validates a single recipient by email address.
+
+```ruby
+simple_spark.recipient_validation.validate('rcpt1@example.com')
+```
+
+<a href="https://developers.sparkpost.com/api/recipient-validation/#recipient-validation-get-email-address-validation" target="_blank">see SparkPost API Documentation</a>
+
 ## Changelog
 
 ### 1.0.12 Fix param name on suppression list https://github.com/leadmachineapp/simple_spark/pull/27
