@@ -908,6 +908,10 @@ simple_spark.recipient_validation.validate('rcpt1@example.com')
 
 ## Changelog
 
+### 1.0.13
+
+- Add Recipient Validation Endpoint
+
 ### 1.0.12 Fix param name on suppression list https://github.com/leadmachineapp/simple_spark/pull/27
 
 ### 1.0.10 / 1.0.11 Minor documentation updates
