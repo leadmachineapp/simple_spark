@@ -104,6 +104,10 @@ describe SimpleSpark::Client do
         specify { expect(client.recipient_lists.class).to eq(SimpleSpark::Endpoints::RecipientLists) }
       end
 
+      context 'recipient_validation' do
+        specify { expect(client.recipient_validation.class).to eq(SimpleSpark::Endpoints::RecipientValidation) }
+      end
+
     end
   end
 end
