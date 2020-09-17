@@ -5,7 +5,7 @@ require 'logger'
 
 module SimpleSpark
   class Client
-    attr_reader :logger
+    attr_reader :logger, :raw_response
 
     def initialize(opts = {})
       @api_key = opts[:api_key] || ENV['SPARKPOST_API_KEY']
@@ -32,6 +32,7 @@ module SimpleSpark
     end
 
     def call(opts)
+      @raw_response = nil
       method = opts[:method]
       path = opts[:path]
       body_values = opts[:body_values] || {}
@@ -50,16 +51,16 @@ module SimpleSpark
         logger.debug(params)
       end
 
-      response = @session.send(method.to_s, params)
+      @raw_response = @session.send(method.to_s, params)
 
       if @debug
-        logger.debug("Response #{response.status}")
-        logger.debug(response)
+        logger.debug("Response #{@raw_response.status}")
+        logger.debug(@raw_response.inspect)
       end
 
-      fail Exceptions::GatewayTimeoutExceeded, 'Received 504 from SparkPost API' if response.status == 504
+      fail Exceptions::GatewayTimeoutExceeded, 'Received 504 from SparkPost API' if @raw_response.status == 504
 
-      process_response(response, extract_results)
+      process_response(@raw_response, extract_results)
 
     rescue Excon::Errors::Timeout
       raise Exceptions::GatewayTimeoutExceeded
