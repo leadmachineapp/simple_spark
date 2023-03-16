@@ -124,6 +124,10 @@ module SimpleSpark
       Endpoints::SendingDomains.new(self)
     end
 
+    def tracking_domains
+      Endpoints::TrackingDomains.new(self)
+    end
+
     def templates
       Endpoints::Templates.new(self)
     end
